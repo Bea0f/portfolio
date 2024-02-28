@@ -1,0 +1,278 @@
+@use "variables" as v;
+
+@mixin for-size($size) {
+  @if $size == tablet {
+    @media screen and (min-width: v.$tablet) {
+      @content;
+    }
+  }
+  @if $size == desktop {
+    @media screen and (min-width: v.$destop) {
+      @content;
+    }
+  }
+}
+//flytta till egen fil?
+@font-face {
+  font-family: "super-funky";
+  src: url(/src/fonts/super-funky-font/SuperFunky-lgmWw.ttf);
+}
+
+@font-face {
+  font-family: "nugo-sans";
+  src: url(/src/fonts/nugo-sans-font/NugoSansLight-9YzoK.ttf);
+}
+
+@font-face {
+  font-family: "qestrafin";
+  src: url(/src/fonts/qestrafin-font/Qestrafin-ax0RE.otf);
+}
+
+@keyframes shake {
+  20% {
+    transform: rotate(25deg);
+  }
+  40% {
+    transform: rotate(-25deg);
+  }
+  60% {
+    transform: rotate(25deg);
+  }
+  80% {
+    transform: rotate(-25deg);
+  }
+}
+
+//Bör flytta till egen mixin fil
+@mixin font($fontFamily, $fontSize) {
+  font-family: $fontFamily;
+  font-size: $fontSize;
+}
+
+@mixin sectionHeadings {
+  font-family: "qestrafin";
+  font-size: 50px;
+  color: #ff5757;
+  padding: 30px;
+  font-weight: 100;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+@mixin flex($fd, $jc, $ai, $w) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+  width: $w;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  body {
+    @include flex(column, center, center, 100%);
+    background-color: #efdfcf;
+
+    #header {
+      @include flex(row, space-between, center, 100%);
+      padding: 20px;
+      height: 75px;
+      position: fixed;
+      top: 0;
+
+      @include for-size(desktop) {
+        @include flex(row, space-around, center, 100%);
+        gap: 2rem;
+      }
+
+      #headerTxt {
+        @include font("nugo-sans", 16px);
+
+        @include for-size(tablet) {
+          font-size: 18px;
+        }
+        @include for-size(desktop) {
+          font-size: 20px;
+        }
+      }
+
+      #nav {
+        &-menu {
+          @include font("nugo-sans", 12px);
+          display: none;
+
+          @include for-size(tablet) {
+            font-size: 18px;
+          }
+
+          @include for-size(desktop) {
+            @include flex(row, center, center, 100%);
+            gap: 2rem;
+            font-size: 20px;
+          }
+
+          &.active {
+            @include flex(column, center, center, 100%);
+            gap: 3rem;
+            left: 0;
+            position: absolute;
+            top: 75px;
+            background-color: #fff;
+            opacity: 90%;
+            transition: 0.3s;
+
+            .nav-item {
+              margin: 20px;
+            }
+          }
+
+          .nav-item {
+            list-style: none;
+
+            .navLinks {
+              text-decoration: none;
+              color: #000;
+              transition: color 0.3s;
+
+              &:hover {
+                cursor: pointer;
+                text-shadow: 4px 4px 6px;
+                color: #ff5757;
+              }
+            }
+          }
+        }
+      }
+      #socialHam {
+        @include flex(row, center, center, 30%);
+        gap: 1rem;
+
+        @include for-size(tablet) {
+          width: 25%;
+        }
+
+        @include for-size(desktop) {
+          width: 15%;
+        }
+        #socialIcons {
+          @include flex(row, center, center, 1);
+          gap: 1rem;
+          padding-right: -50px;
+
+          .fa {
+            @include flex(row, center, center, 100%);
+            flex-wrap: wrap;
+            font-size: 1.7rem;
+            text-align: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition-property: outline-offset, outline-color, background-color;
+            transition-duration: 0.25s;
+
+            &:hover {
+              outline-offset: 3px;
+              animation: shake 1.5s;
+              font-size: 1.9rem;
+            }
+
+            &-github,
+            &-linkedin {
+              color: #000;
+              outline: 0.1rem solid #000;
+              &:hover,
+              &:hover {
+                color: #ff5757;
+                outline: 0.1rem solid #ff5757;
+              }
+            }
+          }
+        }
+
+        #hamburger {
+          cursor: pointer;
+
+          @include for-size(desktop) {
+            display: none;
+          }
+
+          .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            background-color: #000;
+          }
+        }
+        .active {
+          .bar {
+            &:nth-child(2) {
+              opacity: 0;
+            }
+            &:nth-child(1) {
+              transform: translateY(8px) rotate(45deg);
+            }
+            &:nth-child(3) {
+              transform: translateY(-8px) rotate(-45deg);
+            }
+          }
+        }
+      }
+    }
+
+    main {
+      width: 100vw;
+      .sections {
+        min-height: 100vh;
+      }
+      #home {
+        @include flex(column, flex-end, center, 100%);
+        background-image: url(./../img/bg.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        height: 100vh;
+
+        #roles {
+          padding-bottom: 1.5rem;
+          font-family: "nugo-sans";
+          font-size: 18px;
+          color: #ff5757;
+        }
+      }
+      #projects {
+        @include flex(column, center, center, 100%);
+        #projectsHeading {
+          @include sectionHeadings();
+        }
+        #projectsCardContainer {
+          @include flex(row, space-around, center, 80%);
+          flex-wrap: wrap;
+          gap: 3rem;
+          .projectCards {
+            min-width: 500px;
+            max-width: 800px;
+            height: 100px;
+            background-color: white;
+          }
+        }
+      }
+
+      #about {
+        #aboutHeading {
+          @include sectionHeadings();
+        }
+      }
+
+      #contact {
+        #contactHeading {
+          @include sectionHeadings();
+        }
+      }
+    }
+  }
+}
