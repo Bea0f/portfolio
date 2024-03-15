@@ -1,0 +1,279 @@
+/*Breakpoints*/
+@font-face {
+  font-family: "super-funky";
+  src: url(/src/fonts/super-funky-font/SuperFunky-lgmWw.ttf);
+}
+@font-face {
+  font-family: "nugo-sans";
+  src: url(/src/fonts/nugo-sans-font/NugoSansLight-9YzoK.ttf);
+}
+@font-face {
+  font-family: "qestrafin";
+  src: url(/src/fonts/qestrafin-font/Qestrafin-ax0RE.otf);
+}
+@keyframes shake {
+  20% {
+    transform: rotate(25deg);
+  }
+  40% {
+    transform: rotate(-25deg);
+  }
+  60% {
+    transform: rotate(25deg);
+  }
+  80% {
+    transform: rotate(-25deg);
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #efdfcf;
+}
+* body #header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  height: 75px;
+  position: fixed;
+  top: 0;
+}
+@media screen and (min-width: 768px) {
+  * body #header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+  }
+}
+* body #header #headerTxt {
+  font-family: "nugo-sans";
+  font-size: 16px;
+}
+@media screen and (min-width: 360px) {
+  * body #header #headerTxt {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 768px) {
+  * body #header #headerTxt {
+    font-size: 20px;
+  }
+}
+* body #header #nav-menu {
+  font-family: "nugo-sans";
+  font-size: 12px;
+  display: none;
+}
+@media screen and (min-width: 360px) {
+  * body #header #nav-menu {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 768px) {
+  * body #header #nav-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+    font-size: 20px;
+  }
+}
+* body #header #nav-menu.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 3rem;
+  left: 0;
+  position: absolute;
+  top: 75px;
+  background-color: #fff;
+  opacity: 90%;
+  transition: 0.3s;
+}
+* body #header #nav-menu.active .nav-item {
+  margin: 20px;
+}
+* body #header #nav-menu .nav-item {
+  list-style: none;
+}
+* body #header #nav-menu .nav-item .navLinks {
+  text-decoration: none;
+  color: #000;
+  transition: color 0.3s;
+}
+* body #header #nav-menu .nav-item .navLinks:hover {
+  cursor: pointer;
+  text-shadow: 4px 4px 6px;
+  color: #ff5757;
+}
+* body #header #socialHam {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  gap: 1rem;
+}
+@media screen and (min-width: 360px) {
+  * body #header #socialHam {
+    width: 25%;
+  }
+}
+@media screen and (min-width: 768px) {
+  * body #header #socialHam {
+    width: 15%;
+  }
+}
+* body #header #socialHam #socialIcons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 1;
+  gap: 1rem;
+  padding-right: -50px;
+}
+* body #header #socialHam #socialIcons .fa {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  font-size: 1.7rem;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition-property: outline-offset, outline-color, background-color;
+  transition-duration: 0.25s;
+}
+* body #header #socialHam #socialIcons .fa:hover {
+  outline-offset: 3px;
+  animation: shake 1.5s;
+  font-size: 1.9rem;
+}
+* body #header #socialHam #socialIcons .fa-github, * body #header #socialHam #socialIcons .fa-linkedin {
+  color: #000;
+  outline: 0.1rem solid #000;
+}
+* body #header #socialHam #socialIcons .fa-github:hover, * body #header #socialHam #socialIcons .fa-github:hover, * body #header #socialHam #socialIcons .fa-linkedin:hover, * body #header #socialHam #socialIcons .fa-linkedin:hover {
+  color: #ff5757;
+  outline: 0.1rem solid #ff5757;
+}
+* body #header #socialHam #hamburger {
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  * body #header #socialHam #hamburger {
+    display: none;
+  }
+}
+* body #header #socialHam #hamburger .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+  background-color: #000;
+}
+* body #header #socialHam .active .bar:nth-child(2) {
+  opacity: 0;
+}
+* body #header #socialHam .active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+* body #header #socialHam .active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+* body main {
+  width: 100vw;
+}
+* body main .sections {
+  min-height: 100vh;
+}
+* body main #home {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  background-image: url(./../img/bg.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100vh;
+}
+* body main #home #roles {
+  padding-bottom: 1.5rem;
+  font-family: "nugo-sans";
+  font-size: 18px;
+  color: #ff5757;
+}
+* body main #projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+* body main #projects #projectsHeading {
+  font-family: "qestrafin";
+  font-size: 50px;
+  color: #ff5757;
+  padding: 30px;
+  font-weight: 100;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+* body main #projects #projectsCardContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+* body main #projects #projectsCardContainer .projectCards {
+  min-width: 500px;
+  max-width: 800px;
+  height: 100px;
+  background-color: white;
+}
+* body main #about #aboutHeading {
+  font-family: "qestrafin";
+  font-size: 50px;
+  color: #ff5757;
+  padding: 30px;
+  font-weight: 100;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+* body main #contact #contactHeading {
+  font-family: "qestrafin";
+  font-size: 50px;
+  color: #ff5757;
+  padding: 30px;
+  font-weight: 100;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}/*# sourceMappingURL=style.css.map */
