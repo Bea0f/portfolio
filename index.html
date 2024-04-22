@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio 2024</title>
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/scss/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -13,28 +13,32 @@
   </head>
   <body>
     <header id="header">
-      <h2 id="headerTxt">BEATRICE FRIBERG</h2>
+      <!-- <h2 id="headerTxt">BEATRICE FRIBERG</h2> -->
 
       <nav id="nav">
         <ul id="nav-menu">
-          <li class="nav-item"><a href="#" class="navLinks">Home</a></li>
+          <li class="nav-item"><a href="#" class="navLinks colorChange">Home</a></li>
           <li class="nav-item">
-            <a href="#projects" class="navLinks">Projects</a>
+            <a href="#projects" class="navLinks colorChange">Projects</a>
           </li>
           <li class="nav-item">
-            <a href="#about" class="navLinks">About Me</a>
+            <a href="#about" class="navLinks colorChange">About Me</a>
           </li>
           <li class="nav-item">
-            <a href="#contact" class="navLinks">Contact</a>
+            <a href="#contact" class="navLinks colorChange">Contact</a>
           </li>
         </ul>
       </nav>
       <div id="socialHam">
         <div id="socialIcons">
-          <a href="https://github.com/Bea0f" class="fa fa-github" target="_blank"></a>
+          <a
+            href="https://github.com/Bea0f"
+            class="fa fa-github colorChange"
+            target="_blank"
+          ></a>
           <a
             href="https://www.linkedin.com/in/beatrice-friberg/"
-            class="fa fa-linkedin"
+            class="fa fa-linkedin colorChange"
             target="_blank"
           ></a>
         </div>
@@ -47,23 +51,45 @@
     </header>
     <main>
       <section id="home" class="sections">
-        <!-- <h2>Beatrice Friberg</h2> -->
-        <!-- <h3 id="roles">Interaktionsdesigner | UX/UI Designer | Front-end Developer</h3> -->
+        <div id="me">
+          <h2>Beatrice</h2>
+          <h2>Friberg</h2>
+          <h3 id="roles">
+            Front-End Developer | Interaktiondesigner | UX/UI Designer
+          </h3>
+        </div>
       </section>
-      <section id="projects" class="sections"><h2 id="projectsHeading" class="sectionsHeadings">Projects</h2>
+      <section id="projects" class="sections">
+        <h2 id="projectsHeading" class="sectionsHeadings">Projects</h2>
         <div id="projectsCardContainer">
-        <div class="projectCards" id="projectOne"></div>
-        <div class="projectCards" id="projectTwo"></div>
-        <div class="projectCards" id="projectThree"></div>
-        <div class="projectCards" id="projectFour"></div>
-      </div>
+          <div class="projectCards" id="projectOne">
+            <h3 class="project_heading">Första hemsidan</h3>
+          </div>
+          <div class="projectCards" id="projectTwo">
+            <h3 class="project_heading">To-do list</h3>
+          </div>
+          
+          <div class="projectCards" id="projectThree">
+            <h3 class="project_heading">Projekt 3</h3>
+          </div>
+          <div class="projectCards" id="projectFour">
+            <h3 class="project_heading">Hundregistret</h3>
+          </div>
+        </div>
       </section>
       <section id="about" class="sections">
-        
         <h2 id="aboutHeading" class="sectionsHeadings">About Me</h2>
       </section>
       <section id="contact" class="sections">
         <h2 id="contactHeading" class="sectionsHeadings">Contact Me</h2>
+        <form action="post">
+          <label for="name">Namn:</label><br>
+          <input type="text" name="name" id="name">
+          <br>
+          <label for="message">Meddelande</label><br>
+          <textarea name="message" id="message" cols="30" rows="10"></textarea>
+
+        </form>
       </section>
     </main>
 

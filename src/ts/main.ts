@@ -1,4 +1,26 @@
-import "./../css/style.css";
+import "./../scss/style.css";
+
+window.addEventListener("scroll", () => {
+  let scrollPosition = window.scrollY;
+
+  console.log(scrollPosition);
+
+  let scrollThreshold = 200;
+  const toCangeColor = document.getElementsByClassName(
+    "colorChange"
+  ) as HTMLCollectionOf<HTMLDivElement>;
+  if (scrollPosition > scrollThreshold) {
+    for (let i = 0; i < toCangeColor.length; i++) {
+      const element = toCangeColor[i];
+      element.style.color = "#fec8ca";
+    }
+  } else if (scrollPosition < scrollThreshold) {
+    for (let i = 0; i < toCangeColor.length; i++) {
+      const element = toCangeColor[i];
+      element.style.color = "#2f2a3a";
+    }
+  }
+});
 
 const hamburger = document.getElementById("hamburger") as HTMLDivElement;
 const navMenu = document.getElementById("nav-menu") as HTMLUListElement;
@@ -29,13 +51,12 @@ Object.values(projects).forEach((project) => {
     close.innerHTML = "&times;";
 
     close.addEventListener("click", () => {
-      myModal.style.display = "none"
-    })
+      myModal.style.display = "none";
+    });
 
     myModal.appendChild(modalContent);
     myModal.appendChild(close);
     projectContainer?.appendChild(myModal);
-    
   });
 });
 

@@ -28,6 +28,11 @@
   src: url(/src/fonts/qestrafin-font/Qestrafin-ax0RE.otf);
 }
 
+@font-face {
+  font-family: "archivo-black";
+  src: url(./../fonts/Archivo-black/Archivo_Black/ArchivoBlack-Regular.ttf);
+}
+
 @keyframes shake {
   20% {
     transform: rotate(25deg);
@@ -50,13 +55,11 @@
 }
 
 @mixin sectionHeadings {
-  font-family: "qestrafin";
-  font-size: 50px;
-  color: #ff5757;
+  font-family: "archivo-black";
+  font-size: 40px;
+  color: #fec8ca;
   padding: 30px;
-  font-weight: 100;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
+  font-weight: lighter;
 }
 
 @mixin flex($fd, $jc, $ai, $w) {
@@ -74,7 +77,13 @@
 
   body {
     @include flex(column, center, center, 100%);
-    background-color: #efdfcf;
+    background: rgb(66, 47, 59);
+    background: linear-gradient(
+      90deg,
+      rgba(66, 47, 59, 1) 0%,
+      rgba(66, 64, 95, 1) 50%,
+      rgba(47, 42, 58, 1) 100%
+    );
 
     #header {
       @include flex(row, space-between, center, 100%);
@@ -82,21 +91,11 @@
       height: 75px;
       position: fixed;
       top: 0;
+      /*  background-color: #FFCDCF; */
 
       @include for-size(desktop) {
         @include flex(row, space-around, center, 100%);
         gap: 2rem;
-      }
-
-      #headerTxt {
-        @include font("nugo-sans", 16px);
-
-        @include for-size(tablet) {
-          font-size: 18px;
-        }
-        @include for-size(desktop) {
-          font-size: 20px;
-        }
       }
 
       #nav {
@@ -120,7 +119,7 @@
             left: 0;
             position: absolute;
             top: 75px;
-            background-color: #fff;
+            background-color: #fec8ca;
             opacity: 90%;
             transition: 0.3s;
 
@@ -134,13 +133,13 @@
 
             .navLinks {
               text-decoration: none;
-              color: #000;
+              color: #2f2a3a;
               transition: color 0.3s;
 
               &:hover {
                 cursor: pointer;
                 text-shadow: 4px 4px 6px;
-                color: #ff5757;
+                color: #6d70a6;
               }
             }
           }
@@ -173,21 +172,17 @@
             transition-property: outline-offset, outline-color, background-color;
             transition-duration: 0.25s;
 
+            color: #2f2a3a;
+            //outline: 0.1rem solid #2f2a3a;
+
             &:hover {
               outline-offset: 3px;
               animation: shake 1.5s;
               font-size: 1.9rem;
-            }
 
-            &-github,
-            &-linkedin {
-              color: #000;
-              outline: 0.1rem solid #000;
-              &:hover,
-              &:hover {
-                color: #ff5757;
-                outline: 0.1rem solid #ff5757;
-              }
+
+              color: #6d70a6;
+              outline: 0.1rem solid #6d70a6;
             }
           }
         }
@@ -205,7 +200,7 @@
             height: 3px;
             margin: 5px 0;
             transition: all 0.3s ease;
-            background-color: #000;
+            background-color: #2f2a3a;
           }
         }
         .active {
@@ -230,54 +225,90 @@
         min-height: 100vh;
       }
       #home {
-        @include flex(column, flex-end, center, 100%);
-        background-image: url(./../img/forest-8355748_640.jpg);
+        @include flex(column, flex-end, flex-start, 100%);
+        background-image: url(./../img/mountains-1412683_1280.png);
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100% 100%;
         height: 100vh;
 
-        #roles {
+        #me {
+          padding: 50px;
+          @include font(archivo-black, 75px);
+          color: #fec8ca;
+
+          h3 {
+            @include font(archivo-black, 16px);
+            margin: 10px;
+            letter-spacing: 3px;
+          }
+        }
+
+        /* #roles {
           padding-bottom: 1.5rem;
           font-family: "nugo-sans";
           font-size: 18px;
           color: #ff5757;
-        }
+        } */
       }
       #projects {
-        @include flex(column, center, center, 100%);
+        @include flex(row, center, center, 100%);
+        flex-wrap: wrap;
+
         #projectsHeading {
           @include sectionHeadings();
+          width: 100%;
         }
         #projectsCardContainer {
-          @include flex(row, space-around, center, 80%);
+          @include flex(row, space-evenly, center, 80%);
           flex-wrap: wrap;
-          gap: 3rem;
+          gap: 2rem;
           .projectCards {
-            min-width: 500px;
-            max-width: 800px;
-            height: 100px;
-            background-color: white;
+            width: 200px;
+            height: 300px;
+            background-color: #2f2a3a;
+            border-radius: 5%;
+            box-shadow: 10px 10px 5px 0px rgba(51, 45, 61, 0.75);
+            -webkit-box-shadow: 10px 10px 5px 0px rgba(51, 45, 61, 0.75);
+            -moz-box-shadow: 10px 10px 5px 0px rgba(51, 45, 61, 0.75);
 
-            .projectCards {
+            .project_heading {
+              @include font("archivo-black", 17px);
+              color: #fec8ca;
+              font-weight: 100;
+              text-align: center;
+              padding: 15px;
+              
+            }
+
+            &:hover {
+              cursor: pointer;
+              font-size: 30px;
+              background-color: #45487a;
+              width: 250px;
+              height: 350px;
+              transition: 1s;
+            }
+
+            /* .projectCards {
               .modal {
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 1; /* Sit on top */
+                display: none; //Hidden by default
+                position: fixed; //Stay in place
+                z-index: 1; //Sit on top
                 left: 0;
                 top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgb(0, 0, 0); /* Fallback color */
-                background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+                width: 100%; //Full width
+                height: 100%; //Full height
+                overflow: auto; //Enable scroll if needed
+                background-color: rgb(0, 0, 0); //Fallback color
+                background-color: rgba(0, 0, 0, 0.4); //Black w/ opacity
 
                 .modal-content {
                   background-color: #fefefe;
-                  margin: 15% auto; /* 15% from the top and centered */
+                  margin: 15% auto; //15% from the top and centered
                   padding: 20px;
                   border: 1px solid #888;
-                  width: 80%; /* Could be more or less, depending on screen size */
+                  width: 80%; //Could be more or less, depending on screen size
                 }
 
                 .close {
@@ -294,7 +325,7 @@
                   cursor: pointer;
                 }
               }
-            }
+            } */
           }
         }
       }
